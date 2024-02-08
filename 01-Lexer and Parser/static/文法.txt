@@ -1,0 +1,82 @@
+Start -> Program
+Program -> Type idt ( FormalParameters ) StatementBlock
+Type -> int
+Type -> void
+
+FormalParameters -> ParameterList
+FormalParameters -> void
+
+ParameterList -> Parameter Parameters
+Parameters -> , Parameter Parameters | , Parameter
+Parameter -> int idt
+
+StatementBlock -> { InternalDeclaration StatementSequence }
+StatementBlock -> { StatementSequence }
+
+InternalDeclaration -> InternalVariableDeclaration InternalDeclaration
+InternalDeclaration -> InternalVariableDeclaration 
+InternalVariableDeclaration -> Parameter ;
+
+StatementSequence -> StatementSequence Statement
+StatementSequence -> Statement
+
+Statement -> IfStatement
+Statement -> WhileStatement
+Statement -> ReturnStatement
+Statement -> AssignmentStatement
+
+IfStatement -> if ( Expression ) StatementBlock
+IfStatement -> if ( Expression ) StatementBlock else StatementBlock
+
+WhileStatement -> while ( Expression ) StatementBlock
+
+ReturnStatement -> return ;
+ReturnStatement -> return Expression ;
+
+AssignmentStatement -> idt = Expression ;
+
+Expression -> AdditiveExpression
+Expression -> AdditiveExpression RelopAdditiveExpression
+
+RelopAdditiveExpression -> relop AdditiveExpression
+RelopAdditiveExpression -> RelopAdditiveExpression relop AdditiveExpression
+
+relop -> >
+relop -> <
+relop -> >=
+relop -> <=
+relop -> ==
+relop -> !=
+
+AdditiveExpression -> Term
+AdditiveExpression -> Term OperatorTerm
+
+OperatorTerm -> + Term
+OperatorTerm -> - Term
+OperatorTerm -> OperatorTerm + Term
+OperatorTerm -> OperatorTerm - Term
+
+Term -> Factor
+Term -> Factor OperatorFactor
+
+OperatorFactor -> * Factor
+OperatorFactor -> / Factor
+OperatorFactor -> OperatorFactor * Factor
+OperatorFactor -> OperatorFactor / Factor
+
+Factor -> dig
+Factor -> ( Expression )
+Factor -> Identifier
+Factor -> Identifier FTYPE
+
+FTYPE -> FunctionCall
+
+FunctionCall -> ( ActualParameters )
+FunctionCall -> (  )
+
+ActualParameters -> ActualParameterList
+
+ActualParameterList -> Expression Expressions
+Expressions -> , Parameter Expressions1q
+Expressions -> , Parameter
+
